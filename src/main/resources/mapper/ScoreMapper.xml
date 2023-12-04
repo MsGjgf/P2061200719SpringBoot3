@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.p2061200719.Mapper.ScoreMapper">
+    <!--    通过findPage方法对学生表、课程和成绩表三表联查，并通过Map接收返回值-->
+    <select id="findPage" resultType="java.util.Map">
+        SELECT
+            c_id courseNumber,
+            s_id studentNumber,
+            course_name courseName,
+            `name` studentName,
+            score
+        FROM
+            score,course,student
+        WHERE
+            c_id=course_number
+        AND
+            s_id=student_number
+        AND
+            course_name LIKE '%${courseName}%'
+        AND
+            `name` LIKE '%${studentName}%'
+    </select>
+</mapper>
